@@ -14,7 +14,7 @@ import { z } from 'zod';
 // --- Tool Logic ---
 
 const waitInputSchemaShape = {
-  duration_seconds: z.number().positive().describe('The number of seconds to wait'),
+  duration_seconds: z.coerce.number().positive().describe('The number of seconds to wait'), // Use coerce.number()
 };
 const waitInputSchema = z.object(waitInputSchemaShape);
 
