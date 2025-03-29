@@ -45,9 +45,9 @@ Add the following JSON block within the `"mcpServers": {}` object in your client
 **Configuration Block:**
 
 ```json
-    "wait-timer": { // You can rename this key if desired
+    "wait-timer": {
       "command": "npx",
-      "args": ["mcp-wait-timer"], // npx will download and run the package
+      "args": ["mcp-wait-timer"],
       "env": {},
       "disabled": false,
       "autoApprove": []
