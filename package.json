@@ -1,0 +1,31 @@
+{
+  "name": "mcp-wait-timer",
+  "version": "0.1.0",
+  "description": "MCP server with a simple wait tool",
+  "type": "module",
+  "main": "build/index.js",
+  "bin": {
+    "mcp-wait-timer": "./build/index.js"
+  },
+  "scripts": {
+    "build": "tsc && chmod +x build/index.js",
+    "start": "node build/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol"
+  ],
+  "author": "Cline",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.4.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3"
+  },
+  "files": [
+    "build"
+  ]
+}
