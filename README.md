@@ -99,3 +99,11 @@ Once installed and enabled, you can instruct your MCP client:
 ```
 
 The client's AI model should recognize the intent and call the `wait` tool with `duration_seconds: 10`.
+
+## Developed By
+
+This tool was developed as part of the initiatives at [199 Longevity](https://www.199.company), a group focused on extending the frontiers of human health and longevity.
+
+Learn more about our work in biotechnology at [199.bio](https://www.199.bio).
+
+Project contributor: Boris Djordjevic
