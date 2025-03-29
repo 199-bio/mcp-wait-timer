@@ -2,6 +2,8 @@
 
 An MCP (Model Context Protocol) server providing a simple `wait` tool.
 
+Watch the demo video: [https://www.youtube.com/watch?v=TaF_j9wrWVw](https://www.youtube.com/watch?v=TaF_j9wrWVw)
+
 ## Overview
 
 This server exposes a single tool, `wait`, designed to introduce deliberate pauses into workflows executed by MCP clients (e.g., Cline, Claude Desktop, Cursor).
