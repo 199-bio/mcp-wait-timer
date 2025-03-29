@@ -97,3 +97,7 @@ This tool was developed as part of the initiatives at [199 Longevity](https://ww
 Learn more about our work in biotechnology at [199.bio](https://www.199.bio).
 
 Project contributor: Boris Djordjevic
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
