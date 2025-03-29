@@ -34,32 +34,11 @@ This server provides a `wait` tool that allows the user or the AI prompt to expl
 *   **API Interaction:** Add delays between API calls to handle rate limiting or wait for asynchronous job completion.
 *   **Workflow Debugging:** Insert pauses to observe the state of the system at specific points during a complex task.
 
-## Installation
+## Installation & Setup
 
 This server requires Node.js (version 16 or higher).
 
-### Step 1: Setup the Server Locally
-
-1.  **Clone/Download:** Get the project code onto your machine.
-    ```bash
-    git clone https://github.com/199-bio/mcp-wait-timer.git
-    cd mcp-wait-timer
-    ```
-2.  **Install Dependencies:**
-    ```bash
-    npm install
-    ```
-3.  **Build the Server:** Compile the TypeScript code into executable JavaScript.
-    ```bash
-    npm run build
-    ```
-4.  **Link the Command:** Make the server runnable globally using `npm link`. This allows you to use `mcp-wait-timer` as the command in your MCP configuration.
-    ```bash
-    npm link
-    ```
-    *(Note: If you update the code later, just run `npm run build` again. The link will automatically use the updated build.)*
-
-### Step 2: Configure Your MCP Client
+### Step 1: Configure Your MCP Client
 
 Add the following JSON block within the `"mcpServers": {}` object in your client's configuration file. Choose the file corresponding to your client and operating system:
 
@@ -67,8 +46,8 @@ Add the following JSON block within the `"mcpServers": {}` object in your client
 
 ```json
     "wait-timer": { // You can rename this key if desired
-      "command": "mcp-wait-timer", // Uses the command created by 'npm link'
-      "args": [],
+      "command": "npx",
+      "args": ["mcp-wait-timer"], // npx will download and run the package
       "env": {},
       "disabled": false,
       "autoApprove": []
@@ -95,11 +74,11 @@ Add the following JSON block within the `"mcpServers": {}` object in your client
     *   `~/.codeium/windsurf/mcp_config.json`
 
 *   **Other Clients:**
-    *   Consult the specific client's documentation for the location of its MCP configuration file. The JSON structure shown in the "Configuration Block" above should generally work, provided the client supports `stdio` transport via commands.
+    *   Consult the specific client's documentation for the location of its MCP configuration file. The JSON structure shown in the "Configuration Block" above should generally work.
 
-### Step 3: Restart Client
+### Step 2: Restart Client
 
-After adding the configuration block and saving the file, **fully restart** your MCP client application for the changes to take effect.
+After adding the configuration block and saving the file, **fully restart** your MCP client application for the changes to take effect. The first time the client starts the server, `npx` will automatically download the `mcp-wait-timer` package if it's not already cached.
 
 ## Usage Example
 
