@@ -36,59 +36,70 @@ This server provides a `wait` tool that allows the user or the AI prompt to expl
 
 ## Installation
 
-You need Node.js (version 16 or higher) installed.
+This server requires Node.js (version 16 or higher).
 
-There are two primary ways to configure your MCP client to use this server:
+### Step 1: Setup the Server Locally
 
-### Method 1: Using `npx` (Recommended)
-
-This method runs the server directly from this project directory using `npx`. It's convenient as it doesn't require a separate build step after the initial setup.
-
-1.  **Clone/Download:** Ensure you have this project directory (`mcp-wait-timer`) on your machine.
-2.  **Install Dependencies:** Open a terminal *inside* the `mcp-wait-timer` directory and run:
+1.  **Clone/Download:** Get the project code onto your machine.
+    ```bash
+    git clone https://github.com/199-bio/mcp-wait-timer.git
+    cd mcp-wait-timer
+    ```
+2.  **Install Dependencies:**
     ```bash
     npm install
     ```
-3.  **Build (First time only):** Run the build script once to ensure the executable is set up:
+3.  **Build the Server:** Compile the TypeScript code into executable JavaScript.
     ```bash
     npm run build
     ```
-4.  **Configure Client:** Add the following configuration block to your MCP client's settings file (e.g., Cline's `cline_mcp_settings.json` or Claude Desktop's `claude_desktop_config.json`). **Replace `/path/to/your/mcp-wait-timer` with the actual absolute path** to this project directory.
+4.  **Link the Command:** Make the server runnable globally using `npm link`. This allows you to use `mcp-wait-timer` as the command in your MCP configuration.
+    ```bash
+    npm link
+    ```
+    *(Note: If you update the code later, just run `npm run build` again. The link will automatically use the updated build.)*
 
-    ```json
-    "mcp-wait-timer": {
-      "command": "npx",
-      "args": ["."],
-      "cwd": "/path/to/your/mcp-wait-timer", // <-- IMPORTANT: Set absolute path here
+### Step 2: Configure Your MCP Client
+
+Add the following JSON block within the `"mcpServers": {}` object in your client's configuration file. Choose the file corresponding to your client and operating system:
+
+**Configuration Block:**
+
+```json
+    "wait-timer": { // You can rename this key if desired
+      "command": "mcp-wait-timer", // Uses the command created by 'npm link'
+      "args": [],
       "env": {},
       "disabled": false,
       "autoApprove": []
     }
-    ```
-    *   `command: "npx"`: Tells the client to use the `npx` command runner.
-    *   `args: ["."]` : Tells `npx` to execute the package defined in the current directory (specified by `cwd`).
-    *   `cwd`: Specifies the working directory where `npx .` should run. **This must be the absolute path to this project.**
+```
 
-5.  **Restart Client:** Save the configuration file and fully restart your MCP client application.
+**Client Configuration File Locations:**
 
-### Method 2: Manual Configuration (Using Node)
+*   **Claude Desktop:**
+    *   macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+    *   Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+    *   Linux: `~/.config/Claude/claude_desktop_config.json` *(Path may vary slightly)*
 
-This method uses the pre-built JavaScript file.
+*   **VS Code Extension (Cline / "Claude Code"):**
+    *   macOS: `~/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
+    *   Windows: `%APPDATA%\Code\User\globalStorage\saoudrizwan.claude-dev\settings\cline_mcp_settings.json`
+    *   Linux: `~/.config/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
 
-1.  **Clone/Download & Build:** Ensure you have this project directory and have run `npm install` and `npm run build` inside it. This creates the `build/index.js` file.
-2.  **Find Absolute Path:** Note the **absolute path** to the `build/index.js` file within this project directory.
-3.  **Configure Client:** Add the following configuration block to your MCP client's settings file. **Replace `/path/to/your/mcp-wait-timer/build/index.js` with the actual absolute path.**
+*   **Cursor:**
+    *   Global: `~/.cursor/mcp.json`
+    *   Project-Specific: Create a file at `.cursor/mcp.json` within your project folder.
 
-    ```json
-    "mcp-wait-timer": {
-      "command": "node",
-      "args": ["/path/to/your/mcp-wait-timer/build/index.js"], // <-- IMPORTANT: Set absolute path here
-      "env": {},
-      "disabled": false,
-      "autoApprove": []
-    }
-    ```
-4.  **Restart Client:** Save the configuration file and fully restart your MCP client application.
+*   **Windsurf:**
+    *   `~/.codeium/windsurf/mcp_config.json`
+
+*   **Other Clients:**
+    *   Consult the specific client's documentation for the location of its MCP configuration file. The JSON structure shown in the "Configuration Block" above should generally work, provided the client supports `stdio` transport via commands.
+
+### Step 3: Restart Client
+
+After adding the configuration block and saving the file, **fully restart** your MCP client application for the changes to take effect.
 
 ## Usage Example
 
