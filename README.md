@@ -1,4 +1,5 @@
 # MCP Wait Timer Server
+[![smithery badge](https://smithery.ai/badge/@199-bio/mcp-wait-timer)](https://smithery.ai/server/@199-bio/mcp-wait-timer)
 
 An MCP (Model Context Protocol) server providing a simple `wait` tool.
 
@@ -39,6 +40,14 @@ This server provides a `wait` tool that allows the user or the AI prompt to expl
 ## Installation & Setup
 
 This server requires Node.js (version 16 or higher).
+
+### Installing via Smithery
+
+To install Wait Timer Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@199-bio/mcp-wait-timer):
+
+```bash
+npx -y @smithery/cli install @199-bio/mcp-wait-timer --client claude
+```
 
 ### Step 1: Configure Your MCP Client
 
